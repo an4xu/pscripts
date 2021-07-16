@@ -19,14 +19,14 @@ class Uploader
 	[string] $file;
 	[string] $server;
 	[string] $repo;
-	ring] $directory;
+	[string] $directory;
 	[string] $user;
 	[string] $password;
 
 	[string] $token;
 	[string] $uploadLink;
 	[string] $filename;
-	ring] $repoid;
+	[string] $repoid;
 
 	Uploader([string] $file, [string] $server, [string] $repo, [string] $directory, [string] $user, [string] $password) 
 	{
