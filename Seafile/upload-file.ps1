@@ -108,11 +108,17 @@ class Uploader
 
 		$dirHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
 		$dirHeader.Name = '"parent_dir"'
-		$dirContent = [System.Net.Http.StringContent]::new($this.directory)
+		$dirContent = [System.Net.Http.StringContent]::new("/")
 		$dirContent.Headers.ContentDisposition = $dirHeader
+		
+		$pathHeader = [System.Net.Http.Headers.ContentDispositionHeaderValue]::new("form-data")
+		$pathHeader.Name = '"relative_path"'
+		$pathContent = [System.Net.Http.StringContent]::new($this.directory)
+		$pathContent.Headers.ContentDisposition = $pathHeader
 
 		$multipartContent.Add($fileContent)
 		$multipartContent.Add($dirContent)
+		$multipartContent.Add($pathContent)
 
 		$b = $multipartContent.Headers.ContentType.Parameters | Where-Object { $_.Name -eq 'boundary' }
 		$b.Value = $b.Value.Trim('"')
