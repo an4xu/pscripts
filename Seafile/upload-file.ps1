@@ -93,8 +93,8 @@ class Uploader
 	}
 
 	[void] Upload()
-{
-		Write-Host "Run uploader..."		
+	{
+		Write-Host "Run uploader..."
 
 		$multipartContent = [System.Net.Http.MultipartFormDataContent]::new()
 		$multipartFile = $this.file
@@ -118,10 +118,11 @@ class Uploader
 		$b.Value = $b.Value.Trim('"')
 
 		Invoke-RestMethod -Uri $this.uploadlink -Body $multipartContent -Method 'POST'
+		Write-Host "Done."
 	}
 }
 
-function main() 
+function main()
 {
 	[Uploader]::new($file, $server, $repo, $directory, $user, $password).Run();
 }
